@@ -7,7 +7,7 @@ Written by AJ Ostrow <aj.ostrow@pegasusfintech.com>
 
 const GEONToken = artifacts.require("GEONToken")
 const TokenFallbackToken = artifacts.require("TokenFallbackToken")
-const { captureError } = require("./utils")
+const { captureError, ZERO_ADDRESS } = require("./utils")
 
 contract("TokenFallbackToken", function(accounts) {
   const owner = accounts[0]
@@ -29,6 +29,10 @@ contract("TokenFallbackToken", function(accounts) {
 
   it("should prevent token fallback from random accounts", async function() {
     await captureError(token2.tokenFallback(investor2, 1000, 0x0, { from: investor2 }))
+  })
+
+  it("should prevent the message sender is not last version of token", async function() {
+    await captureError(token2.tokenFallback(investor2, 1000, 0x0, { from:  accounts[8]}))
   })
 
   it("should allow erc223 transfers", async function() {

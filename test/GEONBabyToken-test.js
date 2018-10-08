@@ -9,6 +9,7 @@ const GEONBabyToken = artifacts.require("GEONBabyToken");
 const GEONToken = artifacts.require("GEONToken");
 const { timeTravel, captureError } = require("./utils")
 
+
 contract("GEONBabyToken", function(accounts) {
   const owner = accounts[0];
   const investor1 = accounts[1];
@@ -73,11 +74,11 @@ contract("GEONBabyToken", function(accounts) {
     // Wait a full year.
     const day = 60*60*24
     const year = day * 365
-    await timeTravel(year + day)
+    await timeTravel( year + day)
 
     // Redeem full amount.
     const amount = await babyToken.redeemableBalanceOf(investor1)
-    assert.equal(amount, 10000)
+    assert.equal(amount.toNumber(), 10000)
     await babyToken.redeem(amount, { from: investor1 })
     
     const balance = await babyToken.balanceOf(investor1)

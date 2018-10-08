@@ -5,17 +5,26 @@ Proprietary and confidential
 Written by AJ Ostrow <aj.ostrow@pegasusfintech.com>
 */
 
-const timeTravel = async function(seconds) {
-  await web3.currentProvider.send({
-    id: 0,
-    jsonrpc: '2.0',
-    method: 'evm_increaseTime',
-    params: [ seconds ],
-  })
-  await web3.currentProvider.send({
-    id: 0,
-    jsonrpc: '2.0',
-    method: 'evm_mine',
+const timeTravel = function(duration) {
+  const id = Date.now()
+
+  return new Promise((resolve, reject) => {
+    web3.currentProvider.send({
+      jsonrpc: '2.0',
+      method: 'evm_increaseTime',
+      params: [duration],
+      id: id,
+    }, err1 => {
+      if (err1) return reject(err1)
+
+      web3.currentProvider.send({
+        jsonrpc: '2.0',
+        method: 'evm_mine',
+        id: id+1,
+      }, (err2, res) => {
+        return err2 ? reject(err2) : resolve(res)
+      })
+    })
   })
 }
 
@@ -41,8 +50,11 @@ const logWatch = function(event) {
   })
 }
 
+const ZERO_ADDRESS = 0x0000000000000000000000000000000000000000;
+
 module.exports = {
   timeTravel,
   captureError,
   logWatch,
+  ZERO_ADDRESS,
 }
