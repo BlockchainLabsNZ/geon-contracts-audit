@@ -102,7 +102,7 @@ e.g `contract TokenFallbackToken is ERC223ReceivingContract {`.
 <br>
 
 ## Conclusion
-We took part in carefully reviewing all source code provided. The developers demonstrated an understanding of Solidity and smart contracts.
+We took part in carefully reviewing all source code provided. The developers demonstrated a strong understanding of Solidity and smart contracts, the development was of high quality and followed proper best practices.
 
 Overall we consider the resulting contracts following the audit feedback period adequate and any potential vulnerabilities have now been fully resolved. These contracts have a low level risk of GEON being hacked or stolen from the inspected contracts
 
