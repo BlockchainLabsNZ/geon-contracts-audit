@@ -20,6 +20,13 @@ module.exports = {
       solc: {
         version: '0.4.25'
       }
+    },
+  },
+  mocha: {
+    reporter: 'eth-gas-reporter',
+    reporterOptions : {
+      currency: 'CHF',
+      gasPrice: 21
     }
-  }
+  }  
 }
