@@ -31,6 +31,10 @@ contract("TokenFallbackToken", function(accounts) {
     await captureError(token2.tokenFallback(investor2, 1000, 0x0, { from: investor2 }))
   })
 
+  it("should not be able to deploy TokenFallBackToken if token set to 0 address", async function() {
+    await captureError(TokenFallbackToken.new(ZERO_ADDRESS))
+  })
+
   it("should prevent the message sender is not last version of token", async function() {
     await captureError(token2.tokenFallback(investor2, 1000, 0x0, { from:  accounts[8]}))
   })

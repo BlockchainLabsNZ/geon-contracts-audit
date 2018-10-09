@@ -7,6 +7,7 @@ Written by AJ Ostrow <aj.ostrow@pegasusfintech.com>
 
 const GEONToken = artifacts.require("GEONToken")
 const MigrateBalanceToken = artifacts.require("MigrateBalanceToken")
+const { ZERO_ADDRESS, captureError } = require("./utils")
 
 contract("MigrateBalanceToken", function(accounts) {
   const owner = accounts[0]
@@ -25,6 +26,14 @@ contract("MigrateBalanceToken", function(accounts) {
   beforeEach(async function() {
     await token1.pause()
     token2 = await MigrateBalanceToken.new(token1.address)
+  })
+
+  it("should not be able to deploy contract with 0 address as the token address", async function() {
+    await captureError(token2.migrate(ZERO_ADDRESS));
+  })
+
+  it("should not be able to migrate account with 0 address", async function() {
+    await captureError(MigrateBalanceToken.new(ZERO_ADDRESS));
   })
 
   it("should assign temporary supply to last version", async function() {
