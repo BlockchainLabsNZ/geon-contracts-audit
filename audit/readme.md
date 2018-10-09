@@ -5,7 +5,7 @@
 This audit report was undertaken by <b>BlockchainLabs.nz</b> for the purpose of providing feedback to <b>Geon Network
 </b>. <br>It has subsequently been shared publicly without any express or implied warranty.
 
-Solidity contracts were sourced directly from the HubbleLand team at this commit hash [8c81495f0cd6](https://github.com/GeonNetwork/tokens/commit/8c81495f0cd652de18ad93356a77216996679f5e), we would encourage all community members and token holders to make their own assessment of the contracts once they are deployed and verified.
+Solidity contracts were sourced directly from the Geon team at this commit hash [8c81495f0cd6](https://github.com/GeonNetwork/tokens/commit/8c81495f0cd652de18ad93356a77216996679f5e), we would encourage all community members and token holders to make their own assessment of the contracts once they are deployed and verified.
 
 <br>
 
@@ -81,12 +81,12 @@ The audit report is focused on the following key areas - though this is not an e
 </table>
 
 ### Minor
-- **Old Solidity version** - `Best practice` The interface for ERC223ReceivingContract is using solidity version 0.4.11, we recommend using the latest stable version of Solidity.  
+- **Old Solidity version** - `Best practice` The interface for ERC223ReceivingContract is using solidity version 0.4.11, we recommend using the latest stable version of Solidity.
 [View on GitHub](https://github.com/BlockchainLabsNZ/geon-contracts-audit/issues/1)
 <br>
 
 - **The TokenFallbackToken contract doesn't implement ERC223ReceivingContract.** - `Best practice` The `TokenFallbackToken` contract does technically implement the features in the interface `ERC223ReceivingContract`, but it is not explicitly declaring that inheriting from the interface.
-e.g `contract TokenFallbackToken is ERC223ReceivingContract {`.  
+e.g `contract TokenFallbackToken is ERC223ReceivingContract {`.
 [View on GitHub](https://github.com/BlockchainLabsNZ/geon-contracts-audit/issues/2)
 
 
@@ -102,7 +102,7 @@ e.g `contract TokenFallbackToken is ERC223ReceivingContract {`.
 <br>
 
 ## Conclusion
-We took part in carefully reviewing all source code provided. The developers demonstrated an understanding of Solidity and smart contracts. 
+We took part in carefully reviewing all source code provided. The developers demonstrated an understanding of Solidity and smart contracts.
 
 Overall we consider the resulting contracts following the audit feedback period adequate and any potential vulnerabilities have now been fully resolved. These contracts have a low level risk of GEON being hacked or stolen from the inspected contracts
 
